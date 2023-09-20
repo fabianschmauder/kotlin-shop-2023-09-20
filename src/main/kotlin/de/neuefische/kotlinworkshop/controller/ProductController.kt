@@ -15,9 +15,11 @@ import org.springframework.web.server.ResponseStatusException
 class ProductController(private val service: ProductService) {
 
     @GetMapping
-    fun listProducts(@RequestParam search: String): List<Product> =
-        service.list(search)
+    fun listProducts(@RequestParam(required = false) search: String?): List<Product> {
+        return service.list(search)
+    }
 
     @GetMapping("{id}")
-    fun getProduct(@PathVariable id: String) = service.getById(id) ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "product with id $id not found" )
+    fun getProduct(@PathVariable id: String) = service.getById(id)
+        ?: throw ResponseStatusException(HttpStatus.NOT_FOUND, "product with id $id not found")
 }
