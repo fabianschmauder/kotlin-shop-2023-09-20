@@ -18,4 +18,5 @@ class ProductService {
 
 
     fun list(search: String) = products.filter { product -> product.name.contains(search, true) }
+    fun getById(id: String) = products.firstOrNull { product -> product.id == id }
 }
