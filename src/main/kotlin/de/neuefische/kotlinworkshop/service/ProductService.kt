@@ -20,7 +20,7 @@ class ProductService {
 
     fun list(search: String?): List<Product> {
         search ?: return products
-        return products.filter { product -> product.name.contains(search, true) }
+        return filterProducts(products, search)
     }
     fun getById(id: String) = products.firstOrNull { product -> product.id == id }
 }
