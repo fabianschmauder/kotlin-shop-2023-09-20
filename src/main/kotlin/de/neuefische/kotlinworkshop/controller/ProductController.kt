@@ -15,8 +15,8 @@ import org.springframework.web.server.ResponseStatusException
 class ProductController(private val service: ProductService) {
 
     @GetMapping
-    fun listProducts(@RequestParam search: String?): List<Product> {
-        return service.list(search)
+    fun listProducts(@RequestParam search: String?, @RequestParam from: Int? , @RequestParam size: Int?  ): List<Product> {
+        return service.list(search, from?: 0, size?: 10)
     }
 
     @GetMapping("{id}")

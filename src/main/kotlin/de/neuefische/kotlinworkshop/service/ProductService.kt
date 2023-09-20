@@ -17,9 +17,9 @@ class ProductService {
     )
 
 
-    fun list(search: String?): List<Product> {
-        search ?: return products
-        return products.filterBy(name = search)
+    fun list(search: String?, from: Int = 0, size: Int = 10): List<Product> {
+        search ?: return products.pageing(from,size)
+        return products.filterBy(name = search).pageing(from,size)
     }
 
     fun getById(id: String) = products.firstOrNull { product -> product.id == id }

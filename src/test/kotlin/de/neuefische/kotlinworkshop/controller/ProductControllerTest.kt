@@ -24,7 +24,7 @@ class ProductControllerTest {
     @Test
     fun `search for products`() {
 
-        Mockito.`when`(productService.list("p")).thenReturn(listOf(Product(id = "id1", name = "Product")))
+        Mockito.`when`(productService.list("p",  0, 10)).thenReturn(listOf(Product(id = "id1", name = "Product")))
 
         mockMvc.perform(get("/product?search=p")).andExpect(status().isOk())
             .andExpect(
