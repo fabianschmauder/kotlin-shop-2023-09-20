@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 @Service
 class ProductService {
 
-    private val products  = listOf(
+    private val products = listOf(
         Product(
             id = "id1",
             name = "Super Product"
@@ -17,10 +17,10 @@ class ProductService {
     )
 
 
-
     fun list(search: String?): List<Product> {
         search ?: return products
-        return filterProducts(products, search)
+        return products.filterBy(name = search)
     }
+
     fun getById(id: String) = products.firstOrNull { product -> product.id == id }
 }

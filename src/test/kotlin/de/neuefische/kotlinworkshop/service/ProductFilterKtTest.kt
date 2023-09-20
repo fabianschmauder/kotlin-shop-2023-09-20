@@ -21,7 +21,7 @@ class ProductFilterKtTest {
         )
 
         //WHEN
-        val result = filterProducts(products, "")
+        val result = products.filterBy(name = "")
 
         //THEN
         assertThat(result, containsInAnyOrder(   Product(
@@ -47,7 +47,7 @@ class ProductFilterKtTest {
         )
 
         //WHEN
-        val result = filterProducts(products, "eis")
+        val result = products.filterBy(name ="eis")
 
         //THEN
         assertThat(result, containsInAnyOrder(   Product(
