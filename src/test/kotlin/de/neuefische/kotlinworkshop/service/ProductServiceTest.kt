@@ -3,7 +3,6 @@ package de.neuefische.kotlinworkshop.service
 import de.neuefische.kotlinworkshop.domain.Product
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.containsInAnyOrder
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -15,7 +14,7 @@ class ProductServiceTest {
     lateinit var productService: ProductService
 
     @Test
-    fun filterListProducts() {
+    fun `filter list products`() {
 
         val result = productService.list("Super")
 
