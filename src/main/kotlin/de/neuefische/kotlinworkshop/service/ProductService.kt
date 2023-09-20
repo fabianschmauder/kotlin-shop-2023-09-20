@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 @Service
 class ProductService {
 
-    fun list() = listOf(
+    private val products  = listOf(
         Product(
             id = "id1",
             name = "Super Product"
@@ -15,4 +15,7 @@ class ProductService {
             name = "nice Product"
         )
     )
+
+
+    fun list(search: String) = products.filter { product -> product.name.contains(search, true) }
 }
