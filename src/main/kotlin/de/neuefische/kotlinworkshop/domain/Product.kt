@@ -1,7 +1,18 @@
 package de.neuefische.kotlinworkshop.domain
 
-data class Product(
-    val id: String,
-    val name: String,
-    val type: ProductType
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Id
+import jakarta.persistence.Table
+
+@Entity
+@Table(name = "product")
+class Product(
+    @Id
+    @Column
+    var id: String = "",
+    @Column
+    var name: String = "",
+    @Column
+    var type: ProductType = ProductType.FOOD
 )
