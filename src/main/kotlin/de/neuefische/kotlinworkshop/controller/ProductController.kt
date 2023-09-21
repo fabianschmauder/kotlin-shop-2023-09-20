@@ -4,6 +4,7 @@ import de.neuefische.kotlinworkshop.domain.Product
 import de.neuefische.kotlinworkshop.dto.AddProductDto
 
 import de.neuefische.kotlinworkshop.service.ProductService
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -30,10 +31,16 @@ class ProductController(private val service: ProductService) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    fun addProduct(@RequestBody productData: AddProductDto): Product {
+    fun addProduct(@Valid @RequestBody productData: AddProductDto): Product {
+
         if(productData.name.isBlank()){
             throw ResponseStatusException(HttpStatus.BAD_REQUEST, "name is blank")
         }
         return service.addProduct(productData.name)
     }
+
+
+    @GetMapping("category")
+    fun listByCategory() = service.listByCategory()
+
 }
