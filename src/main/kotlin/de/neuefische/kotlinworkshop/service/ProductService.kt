@@ -1,6 +1,7 @@
 package de.neuefische.kotlinworkshop.service
 
 import de.neuefische.kotlinworkshop.domain.Product
+import de.neuefische.kotlinworkshop.dto.AddProductDto
 import org.springframework.stereotype.Service
 import java.util.UUID
 
@@ -34,4 +35,5 @@ class ProductService {
         products += product
         return product
     }
+
 }
