@@ -1,7 +1,9 @@
 package de.neuefische.kotlinworkshop.controller
 
+import com.ninjasquad.springmockk.MockkBean
 import de.neuefische.kotlinworkshop.domain.Product
 import de.neuefische.kotlinworkshop.service.ProductService
+import io.mockk.every
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.springframework.beans.factory.annotation.Autowired
@@ -15,7 +17,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 @WebMvcTest(controllers = [ProductController::class])
 class ProductControllerTest {
 
-    @MockBean
+    @MockkBean
     lateinit var productService: ProductService
 
     @Autowired
@@ -24,7 +26,7 @@ class ProductControllerTest {
     @Test
     fun `search for products`() {
 
-        Mockito.`when`(productService.list("p",  0, 10)).thenReturn(listOf(Product(id = "id1", name = "Product")))
+        every {  productService.list("p",  0, 10) } returns listOf(Product(id = "id1", name = "Product"))
 
         mockMvc.perform(get("/product?search=p")).andExpect(status().isOk())
             .andExpect(
