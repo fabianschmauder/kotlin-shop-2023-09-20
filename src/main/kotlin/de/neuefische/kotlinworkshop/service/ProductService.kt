@@ -1,12 +1,14 @@
 package de.neuefische.kotlinworkshop.service
 
 import de.neuefische.kotlinworkshop.domain.Product
+import de.neuefische.kotlinworkshop.dto.AddProductDto
 import org.springframework.stereotype.Service
+import java.util.UUID
 
 @Service
 class ProductService {
 
-    private val products = listOf(
+    private val products = mutableListOf(
         Product(
             id = "id1",
             name = "Super Product"
@@ -23,4 +25,22 @@ class ProductService {
     }
 
     fun getById(id: String) = products.firstOrNull { product -> product.id == id }
+    fun addProduct(name: String): Product {
+
+        val product = Product(
+            id = UUID.randomUUID().toString(),
+            name = name.trim()
+        )
+
+        products += product
+        return product
+    }
+
+    fun isLongSpring(value: String): String {
+        return if(value.length > 10) {
+            "long string"
+        } else {
+            "short string"
+        }
+    }
 }
